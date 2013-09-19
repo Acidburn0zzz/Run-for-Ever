@@ -84,9 +84,9 @@ Character.prototype.move = function(direction)
 		this._animation = (this._animation+1) % 3;
 		
 		if(direction < 0)
-			this.setX(this.x - Ground.MOVE_BY_FRAME*1.5);
+			this.setX(this.x - Ground.MOVE_BY_FRAME * 1.5 * Main.frameDeltaTimeFactor);
 		else if(direction > 0)
-			this.setX(this.x + Ground.MOVE_BY_FRAME*1.5);
+			this.setX(this.x + Ground.MOVE_BY_FRAME * 1.5 * Main.frameDeltaTimeFactor);
 	}
 }
 
@@ -117,7 +117,7 @@ Character.prototype.update = function()
 	
 	if(this.isFalling)
 	{
-		this.setY(this.y + 10);
+		this.setY(this.y + 10 * Main.frameDeltaTimeFactor);
 	}
 	else
 	{
@@ -131,7 +131,7 @@ Character.prototype.update = function()
 			// jump	
 			if (!this._heightAtt)
 			{
-				this._impulsion -= Main.frameTime * this._heightMax / (500 * this._tempsSaut);
+				this._impulsion -= Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._tempsSaut);
 				this._animation = 2;
 			
 				if(this._impulsion <= -this._heightMax)
@@ -139,7 +139,7 @@ Character.prototype.update = function()
 			}
 			else if( this.y < (ground.y - this.height) )
 			{
-				this._impulsion += Main.frameTime * this._heightMax / (500 * this._tempsSaut);
+				this._impulsion += Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._tempsSaut);
 				this._animation = 2;
 			}
 			else
@@ -148,11 +148,12 @@ Character.prototype.update = function()
 				this.isJumping = false;
 			}
 			
-			this.setY(ground.y - this.height + this._impulsion);
+			this.setY(ground.y - this.height + this._impulsion * Main.frameDeltaTimeFactor);
 		}
 	}
 	
-	// terrain fait reculer personnage 
-	if (this.isFalling || (this.x - Ground.MOVE_BY_FRAME) > 0)
-		this.setX(this.x - Ground.MOVE_BY_FRAME);
+	// terrain fait reculer personnage
+	var xAfterPotentialMoving = this.x - Ground.MOVE_BY_FRAME *  Main.frameDeltaTimeFactor;
+	if (this.isFalling || xAfterPotentialMoving > 0)
+		this.setX(xAfterPotentialMoving);
 }

@@ -73,8 +73,8 @@ Ground.prototype.addSquare = function(isEmpty)
 Ground.prototype.update = function()
 {
 	for (var squareNumber in this.squares)
-	{	
-		this.squares[squareNumber].x -= Ground.MOVE_BY_FRAME * Main.deltaTime / Main.timeInMillisecondsBetweenEachFrame;
+	{
+		this.squares[squareNumber].x -= Ground.MOVE_BY_FRAME * Main.frameDeltaTimeFactor;
 	}
 	
 	var firstSquare = this.squares.shift();

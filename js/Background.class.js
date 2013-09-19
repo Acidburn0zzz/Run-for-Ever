@@ -29,14 +29,14 @@ function Background()
 
 Background.prototype.update = function() 
 {
-	this.plan1X1 -= 1;
-	this.plan1X2 -= 1;
+	this.plan1X1 -= Main.frameDeltaTimeFactor;
+	this.plan1X2 -= Main.frameDeltaTimeFactor;
 	
-	this.plan3X1 -= 3;
-	this.plan3X2 -= 3;
+	this.plan3X1 -= 3 * Main.frameDeltaTimeFactor;
+	this.plan3X2 -= 3 * Main.frameDeltaTimeFactor;
 	
-	this.plan2X1 -= 5;
-	this.plan2X2 -= 5;
+	this.plan2X1 -= 5 * Main.frameDeltaTimeFactor;
+	this.plan2X2 -= 5 * Main.frameDeltaTimeFactor;
 	
 	if (this.plan1X1 <= -canvas.width)
 		this.plan1X1 += 2*canvas.width;

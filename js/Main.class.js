@@ -71,7 +71,10 @@ Main.initGame = function()
 Main.drawGame = function()
 {
 	clock.update();
-	this.deltaTime = clock.getDeltaTime();
+	Main.frameDeltaTimeFactor = clock.getDeltaTime() / Main.timeInMillisecondsBetweenEachFrame;
+	// If the computer has enough power to make a frame each Main.timeInMillisecondsBetweenEachFrame, factor=1
+	// But, if for example the computer needs more time to make a frame, this factor will permit to run the game as the normal speed even if there is less FPS
+	
 	level.update(clock);
 	background.draw();
 	score.draw();
