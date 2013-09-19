@@ -197,16 +197,15 @@ ButtonsManager.initDeath = function()
 	}
 	ButtonsManager.elements['always'].push(restartButton);
 	
-	var form = document.querySelector('form#game-form');
+	var form = document.querySelector('form');
 	if(form != undefined && form.action != '') // check if the form can be send, todo: check if the file exists
 	{
 		sendButton = new Button(
 			score.x, ButtonsManager.elements['always'][ButtonsManager.elements['always'].length-1].y +50, 350, 50,
 			undefined,
 			( function() {
-				var form  = document.querySelector('form#game-form');
-				
-				var input = form.querySelector('input#game-score');
+				var form  = document.querySelector('form');
+				var input = form.querySelector('form input#score');
 				input.value = score.value;
 				form.submit();
 			} )

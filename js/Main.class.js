@@ -13,6 +13,42 @@ Main.init = function()
 	Main.initGame();
 }
 
+Main.addGameKeyboardEvents = function()
+{
+	window.onkeydown = function (event)
+	{
+		if(event.keyCode == 37 || event.keyCode == 72)	// left or h (like Vim)
+		{	
+			character.goingLeft = true;
+			return false;
+		}
+		else if(event.keyCode == 39 || event.keyCode == 76) // right or l (like Vim)
+		{
+			character.goingRight = true;
+			return false;
+		}
+		else if(event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 75) // space or up or k (like Vim)
+		{
+			character.isJumping = true;				
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	window.onkeyup = function (event)
+	{
+		if(event.keyCode == 37)
+			character.goingLeft = false;
+		else if(event.keyCode == 39)
+			character.goingRight = false;
+		
+		character.animation = 1;
+	}
+}
+
 Main.initGame = function()
 {
 	audio = new AudioManager(document.querySelector('audio'), false, false);
@@ -27,6 +63,7 @@ Main.initGame = function()
 	score = new Score();
 	
 	ButtonsManager.initGame();
+	this.addGameKeyboardEvents();
 	
 	clock.start();
 }
@@ -89,39 +126,6 @@ Main.drawDeath = function()
 Main.init();
 Main.frameTime = 40;
 Main.intervalForAFrame = setInterval(Main.drawGame, Main.frameTime);
-
-// Gestion clavier
-window.onkeydown = function (event)
-{
-	if(event.keyCode == 37 || event.keyCode == 72)	// left or h (like Vim)
-	{	
-		character.goingLeft = true;
-		return false;
-	}
-	else if(event.keyCode == 39 || event.keyCode == 76) // right or l (like Vim)
-	{
-		character.goingRight = true;
-		return false;
-	}
-	else if(event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 75) // space or up or k (like Vim)
-	{
-		character.isJumping = true;				
-		return false;
-	}
-	else
-	{
-		return true;
-	}
-}
-window.onkeyup = function (event)
-{
-	if(event.keyCode == 37)
-		character.goingLeft = false;
-	else if(event.keyCode == 39)
-		character.goingRight = false;
-	
-	character.animation = 1;
-}
 
 /* canvas.addEventListener('mouseover', function(event)
 {
