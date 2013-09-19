@@ -58,7 +58,6 @@ Background.prototype.draw = function()
 {
 	this.update();
 	
-	canvas2DContext.clearRect(0, 0, canvas.width, canvas.height);
 	canvas2DContext.drawImage(this.images[level.value][0], this.plan1X1, 0);
 	canvas2DContext.drawImage(this.images[level.value][0], this.plan1X2, 0);
 	canvas2DContext.drawImage(this.images[level.value][1], 0, 0, canvas.width, 220, this.plan3X1, 450, canvas.width, 150);
