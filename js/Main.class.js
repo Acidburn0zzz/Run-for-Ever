@@ -82,11 +82,7 @@ Main.drawDeath = function()
 	else
 	{
 		score.draw();
-		
 		ButtonsManager.draw();
-		restartButton.draw();
-		sendButton.draw();
-		homeButton.draw();
 	}
 }
 

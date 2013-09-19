@@ -16,29 +16,32 @@ ButtonsManager.init = function()
 		this.showTouchButtons = true;
 }
 
-ButtonsManager.addEvents = function()
+ButtonsManager.eventsClickListener = function(event)
 {
-	canvas.addEventListener('click', function(event)
+	var posX = parseInt(event.clientX * canvas.width  / document.body.clientWidth);
+	var posY = parseInt(event.clientY * canvas.height / document.body.clientHeight);
+	// canvas.Mmm / document.body.clientMmm pour s'adapter à la résolution
+	delete event;
+	
+	for (var category in ButtonsManager.elements)
 	{
-		var posX = parseInt(event.clientX * canvas.width  / document.body.clientWidth);
-		var posY = parseInt(event.clientY * canvas.height / document.body.clientHeight);
-		// canvas.Mmm / document.body.clientMmm pour s'adapter à la résolution
-		delete event;
-		
-		for (var category in ButtonsManager.elements)
+		for(var i=0; i < ButtonsManager.elements[category].length; i++)
 		{
-			for(var i=0; i < ButtonsManager.elements[category].length; i++)
-			{	
-				if( posX >= ButtonsManager.elements[category][i].x &&
-					posX <= (ButtonsManager.elements[category][i].x + ButtonsManager.elements[category][i].width) &&
-					posY >= ButtonsManager.elements[category][i].y &&
-					posY <= (ButtonsManager.elements[category][i].y + ButtonsManager.elements[category][i].height) )
-				{
-					ButtonsManager.elements[category][i].action();
-				}
+			if( posX >= ButtonsManager.elements[category][i].x &&
+				posX <= (ButtonsManager.elements[category][i].x + ButtonsManager.elements[category][i].width) &&
+				posY >= ButtonsManager.elements[category][i].y &&
+				posY <= (ButtonsManager.elements[category][i].y + ButtonsManager.elements[category][i].height) )
+			{
+				ButtonsManager.elements[category][i].action();
 			}
 		}
-	}, false);
+	}
+}
+
+ButtonsManager.addEvents = function()
+{
+	canvas.removeEventListener('click', ButtonsManager.eventsClickListener, false);
+	canvas.addEventListener   ('click', ButtonsManager.eventsClickListener, false);
 }
 
 /**
@@ -54,10 +57,10 @@ ButtonsManager._draw = function(buttons)
 
 ButtonsManager.draw = function()
 {
-	this._draw(ButtonsManager.elements['always']);
-	
-	if(this.showTouchButtons)
-		this._draw(ButtonsManager.elements['touch']);
+	for (var category in ButtonsManager.elements)
+	{
+		this._draw(ButtonsManager.elements[category]);
+	}
 }
 
 ButtonsManager.addAudio = function()
@@ -95,6 +98,11 @@ ButtonsManager.addEnableTouch = function()
 		( function() {
 			ButtonsManager.showTouchButtons = !ButtonsManager.showTouchButtons;
 			cookiesManager.set('showTouchButtons', ButtonsManager.showTouchButtons);
+			
+			if(ButtonsManager.showTouchButtons)
+				ButtonsManager.addTouch();
+			else
+				ButtonsManager.clearTouch();
 		} )
 		);
 	delete images;
@@ -106,54 +114,70 @@ ButtonsManager.addEnableTouch = function()
 	this.elements['always'].push(button);
 }
 
+ButtonsManager.addTouch = function()
+{
+	if(ButtonsManager.showTouchButtons)
+	{
+		leftButtonImages = { 'default': new Image() };
+		leftButtonImages['default'].src  = 'images/buttons/arrays/left.png';
+		leftButton = new Button(
+			10, character.y - character.height*4, 150, 100,
+			leftButtonImages,
+			( function() { character.goingLeft = true;; } )
+			);
+		delete leftButtonImages;
+		leftButton.draw = function ()
+		{
+			canvas2DContext.drawImage(this.images['default'], this.x, this.y);
+		}
+		this.elements['touch'].push(leftButton);
+		
+		rightButtonImages = { 'default': new Image() };
+		rightButtonImages['default'].src  = 'images/buttons/arrays/right.png';
+		rightButton = new Button(
+			leftButton.x + leftButton.width +10, leftButton.y, 150, 100,
+			rightButtonImages,
+			( function() { character.goingRight = true; } )
+			);
+		delete rightButtonImages;
+		rightButton.draw = function ()
+		{
+			canvas2DContext.drawImage(this.images['default'], this.x, this.y);
+		}
+		this.elements['touch'].push(rightButton);
+		
+		upButtonImages = { 'default': new Image() };
+		upButtonImages['default'].src  = 'images/buttons/arrays/up.png';
+		upButton = new Button(
+			(leftButton.x + leftButton.width + rightButton.x + rightButton.width)/4, leftButton.y - leftButton.height*1.5, 150, 100,
+			upButtonImages,
+			( function() { character.isJumping = true; } )
+			);
+		delete upButtonImages;
+		upButton.draw = function ()
+		{
+			canvas2DContext.drawImage(this.images['default'], this.x, this.y);
+		}
+		this.elements['touch'].push(upButton);
+		
+		this.addEvents();
+	}
+}
+
+ButtonsManager.clearTouch = function()
+{
+	if(!ButtonsManager.showTouchButtons)
+	{
+		this.elements['touch'] = [];
+	}
+}
+
 ButtonsManager.initGame = function()
 {
 	this.init();
 	this.addAudio();
 	this.addEnableTouch();
-	
-	leftButtonImages = { 'default': new Image() };
-	leftButtonImages['default'].src  = 'images/buttons//arrays/left.png';
-	leftButton = new Button(
-		10, character.y - character.height*4, 150, 100,
-		leftButtonImages,
-		( function() { character.goingLeft = true;; } )
-		);
-	delete leftButtonImages;
-	leftButton.draw = function ()
-	{
-		canvas2DContext.drawImage(this.images['default'], this.x, this.y);
-	}
-	this.elements['touch'].push(leftButton);
-	
-	rightButtonImages = { 'default': new Image() };
-	rightButtonImages['default'].src  = 'images/buttons//arrays/right.png';
-	rightButton = new Button(
-		leftButton.x + leftButton.width +10, leftButton.y, 150, 100,
-		rightButtonImages,
-		( function() { character.goingRight = true; } )
-		);
-	delete rightButtonImages;
-	rightButton.draw = function ()
-	{
-		canvas2DContext.drawImage(this.images['default'], this.x, this.y);
-	}
-	this.elements['touch'].push(rightButton);
-	
-	upButtonImages = { 'default': new Image() };
-	upButtonImages['default'].src  = 'images/buttons//arrays/up.png';
-	upButton = new Button(
-		(leftButton.x + leftButton.width + rightButton.x + rightButton.width)/4, leftButton.y - leftButton.height*1.5, 150, 100,
-		upButtonImages,
-		( function() { character.isJumping = true; } )
-		);
-	delete upButtonImages;
-	upButton.draw = function ()
-	{
-		canvas2DContext.drawImage(this.images['default'], this.x, this.y);
-	}
-	this.elements['touch'].push(upButton);
-	
+	this.addTouch();
 	this.addEvents();
 }
 
@@ -169,34 +193,34 @@ ButtonsManager.initDeath = function()
 		);
 	restartButton.draw = function ()
 	{
-		canvas2DContext.fillText('Recommencer', this.x, this.y);
+		canvas2DContext.fillText('Recommencer', this.x, this.y + this.height);
 	}
 	ButtonsManager.elements['always'].push(restartButton);
 	
-	sendButton = new Button(
-		score.x, restartButton.y +50, 350, 50,
-		undefined,
-		( function() {
-			var form  = document.querySelector('form#game-form');
-			
-			if(form.action == '')
-				alert("Impossible d'envoyer le score");
-			else
-			{
+	var form = document.querySelector('form#game-form');
+	if(form != undefined && form.action != '') // check if the form can be send, todo: check if the file exists
+	{
+		sendButton = new Button(
+			score.x, ButtonsManager.elements['always'][ButtonsManager.elements['always'].length-1].y +50, 350, 50,
+			undefined,
+			( function() {
+				var form  = document.querySelector('form#game-form');
+				
 				var input = form.querySelector('input#game-score');
 				input.value = score.value;
 				form.submit();
-			}
-		} )
-		);
-	sendButton.draw = function ()
-	{
-		canvas2DContext.fillText('Envoyer le score', this.x, this.y);
+			} )
+			);
+		sendButton.draw = function ()
+		{
+			canvas2DContext.fillText('Envoyer le score', this.x, this.y + this.height);
+		}
+		ButtonsManager.elements['always'].push(sendButton);
 	}
-	ButtonsManager.elements['always'].push(sendButton);
+	delete form;
 	
 	homeButton = new Button(
-		score.x, sendButton.y +50, 350, 50,
+		score.x, ButtonsManager.elements['always'][ButtonsManager.elements['always'].length-1].y +50, 350, 50,
 		undefined,
 		( function() {
 			document.location.href = '../';
@@ -204,7 +228,7 @@ ButtonsManager.initDeath = function()
 		);
 	homeButton.draw = function ()
 	{
-		canvas2DContext.fillText('Retourner à l\'accueil', this.x, this.y);
+		canvas2DContext.fillText('Retourner à l\'accueil', this.x, this.y + this.height);
 	}
 	ButtonsManager.elements['always'].push(homeButton);
 	
