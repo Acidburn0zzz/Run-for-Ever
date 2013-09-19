@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Run for Ever</title>
+		
+		<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	</head>
+	
+	<body>
+		<canvas width="1280" height="720">
+			<p>
+				Désolé, votre navigateur web ne supporte pas la balise HTML5 <code>canvas</code>.
+				Mettez votre navigataur web à jour.
+				Nous vous conseillons <a href="https://www.mozilla.org/fr/firefox/">Mozilla Firefox</a>.
+			</p>
+		</canvas>
+		
+		<audio src="" preload="auto" autoplay="autoplay">
+			<p>
+				Désolé, votre navigateur web ne supporte pas la balise HTML5 <code>audio</code>.
+				Mettez votre navigataur web à jour.
+				Nous vous conseillons <a href="https://www.mozilla.org/fr/firefox/">Mozilla Firefox</a>.
+			</p>
+		</audio>
+		
+		<form method="post" action="../formulaire/envoyer-score.php">
+			<input type="hidden" id="score" name="game-score" value="0" />
+		</form>
+		
+		<script src="js/cookiesManager.js"></script>
+		<script src="js/Clock.class.js"></script>
+		<script src="js/Level.class.js"></script>
+		<script src="js/Background.class.js"></script>
+		<script src="js/Square.class.js"></script>
+		<script src="js/Ground.class.js"></script>
+		<script src="js/Character.class.js"></script>
+		<script src="js/Score.class.js"></script>
+		<script src="js/AudioManager.class.js"></script>
+		<script src="js/Button.class.js"></script>
+		<script src="js/ButtonsManager.class.js"></script>
+		<script src="js/Main.class.js"></script>
+	</body>
+</html>
