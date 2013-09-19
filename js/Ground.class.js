@@ -56,8 +56,8 @@ Ground.prototype.addSquare = function(isEmpty)
 		var isEmpty = false;
 		var squareNumberBefore = this.squares.length;
 		
-		// If the 4 previous squares are not empty, the current square may be empty
-		if( !(this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty) )
+		// If the 3 previous squares are not empty, the current square may be empty
+		if( !(this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty) )
 			var isEmpty = Math.random() > this.probabilityNotToHaveAnEmptySquare;
 	}
 	
