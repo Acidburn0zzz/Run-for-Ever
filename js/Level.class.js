@@ -37,9 +37,9 @@ Level.prototype.set = function(level)
  */
 Level.prototype.update = function(clock)
 {
-	if(clock.getTime() < 40)
+	if(clock.getTime() < 40000)
 		this.set(0);
-	else if(clock.getTime() < 120)
+	else if(clock.getTime() < 120000)
 		this.set(1);
 	else
 		this.set(2);

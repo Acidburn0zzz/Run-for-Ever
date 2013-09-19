@@ -61,28 +61,27 @@ Clock.prototype.update = function()
 	{
 		var timer = new Date();
 		var currentTimeStamp = timer.getTime();
-		this.deltaTime = (currentTimeStamp - this.lastTimeStamp)/1000;
+		this.deltaTime = currentTimeStamp - this.lastTimeStamp;
 		
 		this.lastTimeStamp = currentTimeStamp;
 		
 		this.time += this.deltaTime;
+		//alert(this.time); // debug
 	}
 }
 
 /**
- * @return {float} time (in seconds) elapsed since the clock starts
+ * @return {float} time (in milliseconds) elapsed since the clock starts
  */
 Clock.prototype.getTime = function()
 {
-	this.update();
 	return this.time;
 }
 
 /**
- * @return {float} time (in seconds) elapsed since the last call of getTime() or getDeltaTime()
+ * @return {float} time (in milliseconds) elapsed since the last call of update()
  */
 Clock.prototype.getDeltaTime = function()
 {
-	this.update();
 	return this.deltaTime;
 }

@@ -1,3 +1,10 @@
+# Texts
+AddType text/plain             .txt
+AddType text/html              .html .htm .xhtml
+AddType text/css               .css
+AddType application/javascript .js
+AddType text/xml        .xml
+
 # Images
 AddType image/png     .png
 AddType image/svg+xml .svg .svgz
@@ -7,7 +14,6 @@ AddType image/x-icon  .ico
 
 # Audio
 AddType audio/ogg  .oga
-AddType audio/ogg  .ogg
 AddType audio/webm .webma
 AddType audio/mpeg .mp3
 AddType audio/mp4  .m4a

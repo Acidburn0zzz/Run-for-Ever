@@ -109,7 +109,7 @@ Character.prototype.update = function()
 					(ground.squares[squareNumber].x + ground.squares[squareNumber].width) >= (this.x + this.width) &&
 					this.isGrounded() )
 				{
-						this.isFalling = true;
+					this.isFalling = true;
 				}
 			}	
 		}
@@ -117,7 +117,7 @@ Character.prototype.update = function()
 	
 	if(this.isFalling)
 	{
-		this.setY( this.y + 10);
+		this.setY(this.y + 10);
 	}
 	else
 	{
@@ -154,5 +154,5 @@ Character.prototype.update = function()
 	
 	// terrain fait reculer personnage 
 	if (this.isFalling || (this.x - Ground.MOVE_BY_FRAME) > 0)
-		this.setX(this.x -Ground.MOVE_BY_FRAME);
+		this.setX(this.x - Ground.MOVE_BY_FRAME);
 }

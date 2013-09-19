@@ -70,6 +70,8 @@ Main.initGame = function()
 
 Main.drawGame = function()
 {
+	clock.update();
+	this.deltaTime = clock.getDeltaTime();
 	level.update(clock);
 	background.draw();
 	score.draw();
@@ -83,7 +85,7 @@ Main.drawGame = function()
 	{
 		Main.stopGame();
 		Main.initDeath();
-		Main.intervalForAFrame = setInterval(Main.drawDeath, Main.frameTime);
+		Main.intervalForAFrame = setInterval(Main.drawDeath, Main.timeInMillisecondsBetweenEachFrame);
 	}
 }
 
@@ -115,7 +117,7 @@ Main.drawDeath = function()
 		percentageOfImageGameOver*canvas.width, percentageOfImageGameOver*canvas.height );
 	
 	if(percentageOfImageGameOver < 1)
-		percentageOfImageGameOver += 0.04;
+		percentageOfImageGameOver += Main.timeInMillisecondsBetweenEachFrame / 1000;
 	else
 	{
 		score.draw();
@@ -124,8 +126,8 @@ Main.drawDeath = function()
 }
 
 Main.init();
-Main.frameTime = 40;
-Main.intervalForAFrame = setInterval(Main.drawGame, Main.frameTime);
+Main.timeInMillisecondsBetweenEachFrame = 40;
+Main.intervalForAFrame = window.setInterval(Main.drawGame, Main.timeInMillisecondsBetweenEachFrame);
 
 /* canvas.addEventListener('mouseover', function(event)
 {

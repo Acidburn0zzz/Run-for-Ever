@@ -74,7 +74,7 @@ Ground.prototype.update = function()
 {
 	for (var squareNumber in this.squares)
 	{	
-		this.squares[squareNumber].x -= Ground.MOVE_BY_FRAME;
+		this.squares[squareNumber].x -= Ground.MOVE_BY_FRAME * Main.deltaTime / Main.timeInMillisecondsBetweenEachFrame;
 	}
 	
 	var firstSquare = this.squares.shift();
