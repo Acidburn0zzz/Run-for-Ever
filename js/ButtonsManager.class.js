@@ -18,8 +18,8 @@ ButtonsManager.init = function()
 
 ButtonsManager.eventsClickListener = function(event)
 {
-	var posX = parseInt(event.clientX * canvas.width  / document.body.clientWidth);
-	var posY = parseInt(event.clientY * canvas.height / document.body.clientHeight);
+	var posX = parseInt(event.clientX * canvas.width  / canvas.clientWidth);
+	var posY = parseInt(event.clientY * canvas.height / canvas.clientHeight);
 	// canvas.Mmm / document.body.clientMmm pour s'adapter à la résolution
 	delete event;
 	
