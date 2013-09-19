@@ -1,0 +1,17 @@
+# Images
+AddType image/png     .png
+AddType image/svg+xml .svg .svgz
+AddType image/jpg     .jpg
+AddType image/gif     .gif
+AddType image/x-icon  .ico
+
+# Audio
+AddType audio/ogg  .oga
+AddType audio/ogg  .ogg
+AddType audio/webm .webma
+AddType audio/mpeg .mp3
+AddType audio/mp4  .m4a
+AddType audio/wav  .wav
+
+# Others
+AddType application/x-web-app-manifest+json .webapp
