@@ -27,7 +27,7 @@ function Character(x, y, width, height)
 	this._heightMax = 64;
 	this._heightAtt = false;
 	this._impulsion = 0;
-	this._tempsSaut = 0.5;
+	this._jumpTime = 0.5;
 	
 	// variables d'"évenements"
 	this.isJumping  = false;	
@@ -131,7 +131,7 @@ Character.prototype.update = function()
 			// jump	
 			if (!this._heightAtt)
 			{
-				this._impulsion -= Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._tempsSaut);
+				this._impulsion -= Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._jumpTime);
 				this._animation = 2;
 			
 				if(this._impulsion <= -this._heightMax)
@@ -139,7 +139,7 @@ Character.prototype.update = function()
 			}
 			else if( this.y < (ground.y - this.height) )
 			{
-				this._impulsion += Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._tempsSaut);
+				this._impulsion += Main.timeInMillisecondsBetweenEachFrame * this._heightMax / (500 * this._jumpTime);
 				this._animation = 2;
 			}
 			else

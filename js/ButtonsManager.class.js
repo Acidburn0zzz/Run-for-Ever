@@ -187,7 +187,7 @@ ButtonsManager.initDeath = function()
 	this.addAudio();
 	
 	restartButton = new Button(
-		score.x, score.y +50, 350, 50,
+		score.x, score.y + score.height, 350, 50,
 		undefined,
 		( function() { location.reload(true); } )
 		);

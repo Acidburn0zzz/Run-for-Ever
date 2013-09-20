@@ -108,7 +108,7 @@ Main.initDeath = function()
 	imageGameOver.src = 'images/gameover/default.png';
 	
 	score.x = 480;
-	score.y = 300;
+	score.y = 260;
 	
 	ButtonsManager.initDeath();
 }

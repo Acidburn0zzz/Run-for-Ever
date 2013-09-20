@@ -6,7 +6,8 @@ Score = function(value)
 		this.value = value;
 	
 	this.x = 30;
-	this.y = 50;
+	this.y = 10;
+	this.height = 40;
 }
 
 Score.prototype.update = function()
@@ -23,6 +24,6 @@ Score.prototype.draw = function()
 {
 	this.update();
 	
-	canvas2DContext.font = '40px Georgia';
-	canvas2DContext.fillText('Score :  '+ this.value, this.x, this.y);
+	canvas2DContext.font = this.height +'px Georgia';
+	canvas2DContext.fillText('Score :  '+ this.value, this.x, this.y + this.height);
 }
