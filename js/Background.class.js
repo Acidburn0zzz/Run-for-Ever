@@ -1,67 +1,52 @@
 /**
  * @constructor
- * @author Allan Guilmin
  */
 function Background()
 {
-	this.images = {};
-
-	for(var levelInt=0; levelInt <= Level.MAX; levelInt++)
+	this.plans = [];
+	
+	
+	var images = [];
+	
+	for(var planInt=0; planInt < 3; planInt++)
 	{
-		this.images[levelInt] = {};
-   		
-		for(var planInt=0; planInt <= 1; planInt++)
+		images.push(new Array());
+		
+		for(var levelInt=0; levelInt <= Level.MAX; levelInt++)
 		{
-			this.images[levelInt][planInt] = new Image();
-			this.images[levelInt][planInt].src = 'images/background/plan'+ planInt +'-'+ levelInt +'.png';
+			images[planInt][levelInt] = new Image();
+			images[planInt][levelInt].src = 'images/background/plan'+ ((planInt == 0) ? 0 : 1) +'-'+ levelInt +'.png';
 		}
 	}
 	
-	// X1 est l'image de "base" et X2 est le clone pour le scrolling
-	this.plan1X1 = 0;
-	this.plan2X1 = 0;
-	this.plan3X1 = 0;
-	this.plan1X2 = canvas.width;
-	this.plan2X2 = canvas.width;
-	this.plan3X2 = canvas.width;
+	
+	var plansSpecificProprieties = [
+		{'y':0,   'xToAddPerFrame':1, 'width':canvas.width, 'height':canvas.height},
+		{'y':450, 'xToAddPerFrame':3, 'width':canvas.width, 'height':150},
+		{'y':500, 'xToAddPerFrame':5, 'width':canvas.width, 'height':220}
+		];
+	// Images can need time to be loaded, so for being sure to have a correct width and height, the width and height have been put in this variable.
+	
+	for(var planInt=0; planInt < 3; planInt++)
+	{
+		var planSpecificProprieties = plansSpecificProprieties.shift();
+		this.plans.push(new Plan(images[planInt], planSpecificProprieties['y'], planSpecificProprieties['xToAddPerFrame'], planSpecificProprieties['width'], planSpecificProprieties['height']));
+	}
 } 
 
 
 Background.prototype.update = function() 
 {
-	this.plan1X1 -= Main.frameDeltaTimeFactor;
-	this.plan1X2 -= Main.frameDeltaTimeFactor;
-	
-	this.plan3X1 -= 3 * Main.frameDeltaTimeFactor;
-	this.plan3X2 -= 3 * Main.frameDeltaTimeFactor;
-	
-	this.plan2X1 -= 5 * Main.frameDeltaTimeFactor;
-	this.plan2X2 -= 5 * Main.frameDeltaTimeFactor;
-	
-	if (this.plan1X1 <= -canvas.width)
-		this.plan1X1 += 2*canvas.width;
-	if (this.plan1X2 <= -canvas.width)
-		this.plan1X2 += 2*canvas.width;
-  
-	if (this.plan3X1 <= -canvas.width)
-		this.plan3X1 += 2*canvas.width;
-	if (this.plan3X2 <= -canvas.width)
-		this.plan3X2 += 2*canvas.width;
-	
-	if (this.plan2X1 <= -canvas.width) 
-		this.plan2X1 += 2*canvas.width;
-	if (this.plan2X2 <= -canvas.width)
-		this.plan2X2 += 2*canvas.width;
+	for(var i=0; i < this.plans.length; i++)
+	{
+		this.plans[i].update();
+	}
 }
 
 Background.prototype.draw = function() 
 {
-	this.update();
-	
-	canvas2DContext.drawImage(this.images[level.value][0], this.plan1X1, 0);
-	canvas2DContext.drawImage(this.images[level.value][0], this.plan1X2, 0);
-	canvas2DContext.drawImage(this.images[level.value][1], 0, 0, canvas.width, 220, this.plan3X1, 450, canvas.width, 150);
-	canvas2DContext.drawImage(this.images[level.value][1], 0, 0, canvas.width, 220, this.plan3X2, 450, canvas.width, 150);
-	canvas2DContext.drawImage(this.images[level.value][1], 0, 0, canvas.width, 220, this.plan2X1, 500, canvas.width, 220);
-	canvas2DContext.drawImage(this.images[level.value][1], 0, 0, canvas.width, 220, this.plan2X2, 500, canvas.width, 220);
+	for(var i=0; i < this.plans.length; i++)
+	{
+		this.plans[i].draw();
+	}
 }
