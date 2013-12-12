@@ -1,7 +1,7 @@
 /**
  * This class has been made by hemanth
  * Some modifications have been made by Spanti Nicola
- * All rights reserved to hemanth
+ * @licence public domain
  * The original source code is avaible at this adress : http://h3manth.com/content/simple-cookie-management-javascript
  */
 

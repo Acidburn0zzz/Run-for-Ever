@@ -1,4 +1,10 @@
 /**
+ * For that file :
+ * @licence LGPL 2 and 3 (https://www.gnu.org/licenses/lgpl.html)
+ * @author Nicola Spanti
+ */
+
+/**
  * @constructor
  */
 function Background()

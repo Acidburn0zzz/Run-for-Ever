@@ -1,4 +1,9 @@
 /**
+ * For that file :
+ * @licence all rights reserved
+ */
+
+/**
  * @constructor
  * @param {int} x position
  * @param {int} y position

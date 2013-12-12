@@ -1,6 +1,6 @@
 /**
  * For that file :
- * @licence newBSD (https://en.wikipedia.org/wiki/BSD_licenses#3-clause_license_.28.22Revised_BSD_License.22.2C_.22New_BSD_License.22.2C_or_.22Modified_BSD_License.22.29)
+ * @licence LGPL 2 and 3 (https://www.gnu.org/licenses/lgpl.html)
  * @author Nicola Spanti
  */
 
