@@ -25,13 +25,13 @@ function Ground(x, y, squares)
 		this.squares.push(new Square(0, this.y, false));
 		this.squares.push(new Square(Square.WIDTH, this.y, false));
 		
-		for(var i=2; i < 5; i++)
+		for(var i=2; i < 5; ++i)
 		{
 			this.addSquare(false);
 			// first squares are not empty, it is needed for addSquares if isEmpty parameter is not given
 		}
 		
-		for(var i=5; i <= nbOfSquaresToMake; i++)
+		for(var i=5; i <= nbOfSquaresToMake; ++i)
 		{
 			this.addSquare();
 		}
@@ -58,7 +58,7 @@ Ground.prototype.addSquare = function(isEmpty)
 		
 		// If the 3 previous squares are not empty, the current square may be empty
 		if( !(this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty && this.squares[--squareNumberBefore].isEmpty) )
-			var isEmpty = Math.random() > this.probabilityNotToHaveAnEmptySquare;
+			isEmpty = Math.random() > this.probabilityNotToHaveAnEmptySquare;
 	}
 	
 	// On récupére la dernière case, uniquement pour sa position et sa taille

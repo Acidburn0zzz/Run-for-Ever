@@ -6,36 +6,40 @@
 	
 	"locales":
 	{
-		"fr":
-		{
-			"name": "Run For Ever",
-			"description": "Run For Ever est un jeu vidéo à scrolling horizontal où il faut éviter des trous",
-			"developer":
-			{
-				"name": "Les 5 coureurs éternels"
-			}
-		},
-		
 		"en":
 		{
-			"name": "Run For Ever",
 			"description": "Run For Ever is horizontal scrolling game with holes that kill you",
 			"developer":
 			{
 				"name": "The 5 eternal runners"
 			}
+		},
+		
+		"fr":
+		{
+			"description": "Run For Ever est un jeu vidéo à scrolling horizontal où il faut éviter des trous",
+			"developer":
+			{
+				"name": "Les 5 coureurs éternels"
+			}
 		}
 	},
-	"default_locale": "fr",
+	"default_locale": "en",
 	
 	"icons":
 	{
-		"16":  "/images/icons/16.png",
-		"30":  "/images/icons/30.png",
-		"32":  "/images/icons/32.png",
-		"60":  "/images/icons/32.png",
-		"64":  "/images/icons/64.png",
-		"128": "/images/icons/128.png",
-		"256": "/images/icons/256.png"
+		"16" : "/images/icons/16-16.png",
+		"30" : "/images/icons/30-30.png",
+		"32" : "/images/icons/32-32.png",
+		"60" : "/images/icons/60-60.png",
+		"64" : "/images/icons/64-64.png",
+		"128": "/images/icons/128-128.png",
+		"256": "/images/icons/256-256.png"
+	},
+	
+	"version": "0.1",
+	"release_notes":
+	{
+		"0.1": "The first alpha version!"
 	}
 }

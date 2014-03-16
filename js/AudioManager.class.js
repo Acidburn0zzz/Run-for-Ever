@@ -11,7 +11,7 @@
  * @param {boolean} no sound
  * @param {float} 0 <= volume <= 1
  */
-AudioManager = function(element, controls, muted, volume)
+function AudioManager(element, controls, muted, volume)
 {
 	if(element == undefined)
 		this.element = document.querySelector('audio');
@@ -63,7 +63,7 @@ AudioManager.MIME_TYPES_WITH_MATCHING_EXTENSION = {
 	'oga;  codecs="opus"'   : 'opus.oga',
 	'ogg;  codecs="opus"'   : 'opus.oga',
 	'webm; codecs="vorbis"' : 'vorbis.webma',
-	'webm; codecs="opus"' : 'opus.webma',
+	'webm; codecs="opus"'   : 'opus.webma',
 	'wav;  codecs="PCM"'    : 'pcm.wav',
 	'wave; codecs="PCM"'    : 'pcm.wav',
 	'mp3'                   : 'mp3',
