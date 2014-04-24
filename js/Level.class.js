@@ -14,13 +14,13 @@ Level.MAX = 2;
 Level.prototype.set = function(level)
 {
 	if(level == undefined)
-		throw 'undefined level';
+		throw new TypeError('undefined level');
 	else if(isNaN(level))
-		throw 'level is not a number';
+		throw new TypeError('level is not a number');
 	else if(level < 0)
-		throw 'level < 0';
+		throw new RangeError('level < 0');
 	else if(level > Level.MAX)
-		throw 'level is more than the max level ('+ Level.MAX +')';
+		throw new RangeError('level is more than the max level ('+ Level.MAX +')');
 	else if(this.value != level)
 	{
 		this.value = parseInt(level);

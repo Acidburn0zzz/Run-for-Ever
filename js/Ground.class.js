@@ -18,7 +18,7 @@ function Ground(x, y, squares)
 	
 	if(squares == undefined)
 	{
-		this.squares = Array();
+		this.squares = [];
 		
 		var nbOfSquaresToMake = Math.ceil(canvas.width / Square.WIDTH);
 		

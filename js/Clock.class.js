@@ -66,7 +66,6 @@ Clock.prototype.update = function()
 		this.lastTimeStamp = currentTimeStamp;
 		
 		this.time += this.deltaTime;
-		//alert(this.time); // debug
 	}
 }
 

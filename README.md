@@ -17,6 +17,10 @@ We use english, so please use it everywhere in the project (messages, function n
 Names of variables, functions/methods, classes and everything else have to be clear, even if the name is a little longer.
 You also do not have to forget to create documentation.
 
+Classes should be written in upper camel case.
+Variables, functions and methods should be written in lower camel case.
+Constants should be written in uppercase characters separated by underscores.
+
 Following the PEP (Python Enhancement Proposal) 20 is a good thing, even if the project does not use the Python language.
 http://www.python.org/dev/peps/pep-0020/
 

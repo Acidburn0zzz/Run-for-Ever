@@ -6,25 +6,25 @@
 function Plan(images, y, xToAddPerFrame, width, height)
 {
 	if(images == undefined)
-		throw 'images must be defined';
+		throw new TypeError('images must be defined');
 	else if(images == null)
-		throw 'images must be not null';
+		throw new TypeError('images must be not null');
 	else if(images.length != Level.MAX +1)
 		throw 'images must have the same length than the level max +1';
 	else
 		this.images = images;
 	
 	if(y == undefined)
-		throw 'y must be defined';
+		throw new TypeError('y must be defined');
 	else if(isNaN(y))
-		throw 'y must be a number'
+		throw new TypeError('y must be a number');
 	else
 		this.y = y;
 	
 	if(xToAddPerFrame == undefined)
 		this.xToAddPerFrame = 1;
 	else if(isNaN(xToAddPerFrame))
-		throw 'xToAddPerFrame must be a number';
+		throw new TypeError('xToAddPerFrame must be a number');
 	else
 		this.xToAddPerFrame = parseInt(xToAddPerFrame);
 	

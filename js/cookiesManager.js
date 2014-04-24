@@ -48,7 +48,7 @@ cookiesManager.get = function (name)
 {
 	var splits = document.cookie.split(";");
 	
-	for (var i = 0; i < splits.length; i++)
+	for (var i = 0; i < splits.length; ++i)
 	{
 		var split = splits[i].split("=");
 		

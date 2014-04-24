@@ -44,7 +44,7 @@ function Character(x, y, width, height)
 Character.prototype.setX = function(x)
 {
 	if(isNaN(x))
-		throw 'x is NaN';
+		throw new TypeError('x is NaN');
 	else if( (x + this.width) < (canvas.width -10) && (x > 10 || this.isFalling) )
 		this.x = parseInt(x);
 }
@@ -52,7 +52,7 @@ Character.prototype.setX = function(x)
 Character.prototype.setY = function(y)
 {
 	if(isNaN(y))
-		throw 'y is NaN';
+		throw new TypeError('y is NaN');
 	else if( y > (canvas.height /2) ) // todo really
 		this.y = parseInt(y);
 }

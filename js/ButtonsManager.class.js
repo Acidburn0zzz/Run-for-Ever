@@ -25,7 +25,7 @@ ButtonsManager.eventsClickListener = function(event)
 	
 	for (var category in ButtonsManager.elements)
 	{
-		for(var i=0; i < ButtonsManager.elements[category].length; i++)
+		for(var i=0; i < ButtonsManager.elements[category].length; ++i)
 		{
 			if( posX >= ButtonsManager.elements[category][i].x &&
 				posX <= (ButtonsManager.elements[category][i].x + ButtonsManager.elements[category][i].width) &&
@@ -49,7 +49,7 @@ ButtonsManager.addEvents = function()
  */
 ButtonsManager._draw = function(buttons)
 {
-	for(var i=0; i < buttons.length; i++)
+	for(var i=0; i < buttons.length; ++i)
 	{
 		buttons[i].draw();
 	}

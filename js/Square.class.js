@@ -37,7 +37,7 @@ function Square(x, y, isEmpty, width, height, images)
 	if(images == undefined)
 	{
 		this.images = {};
-		for(var levelInt=0; levelInt <= Level.MAX; levelInt++)
+		for(var levelInt=0; levelInt <= Level.MAX; ++levelInt)
 		{
 			this.images[levelInt] = {};
 			this.images[levelInt]['default'] = new Image();

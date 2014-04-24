@@ -13,11 +13,11 @@ Score = function(value)
 Score.prototype.update = function()
 {
 	if(clock == undefined)
-		throw 'clock is not defined';
+		throw new TypeError('clock is not defined');
 	else if(clock instanceof Clock)
 		this.value = parseInt( clock.getTime() * (3 + level.value) / 1000 );
 	else
-		throw 'clock must be an instance of Clock';
+		throw new TypeError('clock must be an instance of Clock');
 }
 
 Score.prototype.draw = function()

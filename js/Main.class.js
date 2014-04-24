@@ -17,17 +17,17 @@ Main.addGameKeyboardEvents = function()
 {
 	window.onkeydown = function (event)
 	{
-		if(event.keyCode == 37 || event.keyCode == 72)	// left or h (like Vim)
+		if(event.keyCode == KeyEvent.DOM_VK_LEFT || event.keyCode == KeyEvent.DOM_VK_H)	// left or h (like Vim)
 		{	
 			character.goingLeft = true;
 			return false;
 		}
-		else if(event.keyCode == 39 || event.keyCode == 76) // right or l (like Vim)
+		else if(event.keyCode == KeyEvent.DOM_VK_RIGHT || event.keyCode == KeyEvent.DOM_VK_L) // right or l (like Vim)
 		{
 			character.goingRight = true;
 			return false;
 		}
-		else if(event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 75) // space or up or k (like Vim)
+		else if(event.keyCode == KeyEvent.DOM_VK_SPACE || event.keyCode == KeyEvent.DOM_VK_UP || event.keyCode == KeyEvent.DOM_VK_K) // space or up or k (like Vim)
 		{
 			character.isJumping = true;				
 			return false;
@@ -40,9 +40,9 @@ Main.addGameKeyboardEvents = function()
 	
 	window.onkeyup = function (event)
 	{
-		if(event.keyCode == 37)
+		if(event.keyCode == KeyEvent.DOM_VK_LEFT || event.keyCode == KeyEvent.DOM_VK_H)
 			character.goingLeft = false;
-		else if(event.keyCode == 39)
+		else if(event.keyCode == KeyEvent.DOM_VK_RIGHT || event.keyCode == KeyEvent.DOM_VK_L)
 			character.goingRight = false;
 		
 		character.animation = 1;

@@ -54,9 +54,9 @@ Button = function(x, y, width, height, images, action)
 Button.prototype.setX = function(x)
 {
 	if(isNaN(x))
-		throw 'x is NaN';
+		throw new TypeError('x is NaN');
 	else if(x < 0)
-		throw 'x must be positive';
+		throw new RangeError('x must be positive');
 	else
 		this.x = parseInt(x);
 }
@@ -64,9 +64,9 @@ Button.prototype.setX = function(x)
 Button.prototype.setY = function(y)
 {
 	if(isNaN(y))
-		throw 'y is NaN';
+		throw new TypeError('y is NaN');
 	else if(y < 0)
-		throw 'y must be positive';
+		throw new RangeError('y must be positive');
 	else
 		this.y = parseInt(y);
 }
@@ -74,9 +74,9 @@ Button.prototype.setY = function(y)
 Button.prototype.setWidth = function(width)
 {
 	if(isNaN(width))
-		throw 'width is NaN';
+		throw new TypeError('width is NaN');
 	else if(width < 1)
-		throw 'width must be greater or equal than 1';
+		throw new RangeError('width must be greater or equal than 1');
 	else
 		this.width = parseInt(width);
 }
@@ -84,9 +84,9 @@ Button.prototype.setWidth = function(width)
 Button.prototype.setHeight = function(height)
 {
 	if(isNaN(height))
-		throw 'height is NaN';
+		throw new TypeError('height is NaN');
 	else if(height < 1)
-		throw 'height must be greater or equal than 1';
+		throw new RangeError('height must be greater or equal than 1');
 	else
 		this.height = parseInt(height);
 }
