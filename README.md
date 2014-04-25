@@ -24,6 +24,8 @@ Constants should be written in uppercase characters separated by underscores.
 Following the PEP (Python Enhancement Proposal) 20 is a good thing, even if the project does not use the Python language.
 http://www.python.org/dev/peps/pep-0020/
 
+utils folder contains files that can be useful in an other not similar project.
+
 #### Text files
 
 If you need to make a structured document, you should consider Markdown and of course HTML.
